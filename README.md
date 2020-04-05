@@ -2,19 +2,25 @@ This document is the appendix B of the book [Hands-On Machine Learning with Scik
 
 # Machine Learning Project Checklist 
 This checklist can guide you through your Machine Leaming projects. There are eight main steps: 
-1. Frame the problem and look at the big picture. 
-2. Get the data. 
-3. Explore the data to gain insights. 
-4. Prepare the data to better expose the underlying data patterns to Machine Learning algorithms. 
-5. Explore many different models and shortlist the best ones. 
-6. Fine-tune your models and combine them into a great solution. 
-7. Present your solution. EL Launch, monitor, and maintain your system. Obviously, you should feel free to adapt this checklist to your needs. 
 
-# Frame the Problem and Look at the Big Picture 
+1. [Frame the problem and look at the big picture](#frame-the-problem-and-look-at-the-big-picture)  
+2. [Get the data](#get-the-data)  
+3. [Explore the data to gain insights](#explore-the-data)  
+4. [Prepare the data to better expose the underlying data patterns to Machine Learning algorithms](#prepare-the-data)  
+5. [Explore many different models and shortlist the best ones](#shortlist-promising-models) 
+6. [Fine-tune your models and combine them into a great solution](#fine-tune-the-system)  
+7. [Present your solution](#present-your-solution)  
+8. [Launch, monitor, and maintain your system](#launch)  
+
+Obviously, you should feel free to adapt this checklist to your needs.
+
+## Frame the Problem and Look at the Big Picture 
+
 1. Define the objective in business terms. 
 2. How will your solution be used? 
 3. What are the current solutions/workarounds (if any)? 
-4. How should you frame this problem (supervised/unsupervised, online/offiine, etc.)? 
+4. How should you frame this problem (supervis
+ed/unsupervised, online/offiine, etc.)? 
 5. How should performance be measured? 
 6. Is the performance measure aligned with the business objective? 
 7. What would be the minimum performance needed to reach the business objective? 
@@ -24,8 +30,9 @@ This checklist can guide you through your Machine Leaming projects. There are ei
 11. List the assumptions you (or others) have made so far. 
 12. Verify assumptions if possible. 
 
-# Get the Data 
+## Get the Data 
 Note: automate as much as possible so you can easily get fresh data. 
+
 1. List the data you need and how much you need. 
 2. Find and document where you can get that data. 
 3. Check how much space it will take. 
@@ -38,10 +45,11 @@ Note: automate as much as possible so you can easily get fresh data.
 10. Check the size and type of data (time series, sample, geographical, etc.). 
 11. Sample a test set, put it aside, and never look at it (no data snooping!). 
 
-# Explore the Data 
+## Explore the Data 
 Note: try to get insights from a field expert for these steps. 
+
 1. Create a copy of the data for exploration (sampling it down to a manageable size if necessary). 
-2. Create a Supper notebook to keep a record of your data exploration. 
+2. Create a Jupyter notebook to keep a record of your data exploration. 
 3. Study each attribute and its characteristics: 
 	*  Name 
 	*  Type (categorical, int/float, bounded/unbounded, text, structured, etc.) 
@@ -54,11 +62,13 @@ Note: try to get insights from a field expert for these steps.
 6. Study the correlations between attributes. 
 7. Study how you would solve the problem manually. 
 8. Identify the promising transformations you may want to apply. 
-9. Identify extra data that would be useful (go back to "Get the Data"). 
+9. Identify extra data that would be useful (go back to ["Get the Data"](#get-the-data
+)). 
 10. Document what you have learned. 
 
-# Prepare the Data 
+## Prepare the Data 
 Notes: 
+
 * Work on copies of the data (keep the original dataset intact). 
 * Write functions for all data transformations you apply, for five reasons: 
 	* So you can easily prepare the data the next time you get a fresh dataset 
@@ -66,6 +76,7 @@ Notes:
 	* To clean and prepare the test set 
 	* To clean and prepare new data instances once your solution is live 
 	* To make it easy to treat your preparation choices as hyperparameters 
+
 1. Data cleaning: 
 	* Fix or remove outliers (optional). 
 	* Fill in missing values (e.g., with zero, mean, median...) or drop their rows (or columns). 
@@ -74,13 +85,14 @@ Notes:
 3. Feature engineering, where appropriate: 
 	* Discretize continuous features. 
 	* Decompose features (e.g., categorical, date/time, etc.). 
-	* Add promising transformations of features (e.g., log(x), sqrt(x), xa, etc.). 
+	* Add promising transformations of features (e.g., log(x), sqrt(x), x^2, etc.). 
 	* Aggregate features into promising new features. 
 4. Feature scaling: 
 	* Standardize or normalize features. 
 
-# Shortlist Promising Models 
+## Shortlist Promising Models 
 Notes: 
+
 * If the data is huge, you may want to sample smaller training sets so you can train many different models in a reasonable time (be aware that this penalizes complex models such as large neural nets or Random Forests). 
 * Once again, try to automate these steps as much as possible. 
 
@@ -94,15 +106,16 @@ Notes:
 6. Perform one or two more quick iterations of the five previous steps. 
 7. Shordist the top three to five most promising models, preferring models that make different types of errors. 
 
-# Fine-Tune the System 
+## Fine-Tune the System 
 
 Notes: 
+
 * You will want to use as much data as possible for this step, especially as you move toward the end of fine-tuning. 
 * As always, automate what you can. 
 
 1. Fine-tune the hyperparameters using cross-validation: 
 	* Treat your data transformation choices as hyperparameters, especially when you are not sure about them (e.g., if you're not sure whether to replace missing values with zeros or with the median value, or to just drop the rows). 
-	* Unless there are very few hyperparameter values to explore, prefer random search over grid search. If training is very long, you may prefer a Bayesian optimization approach (e.g., using Gaussian process priors, as described by Jasper Snoek et al.).1 
+	* Unless there are very few hyperparameter values to explore, prefer random search over grid search. If training is very long, you may prefer a Bayesian optimization approach (e.g., using Gaussian process priors, as described by [Jasper Snoek](https://arxiv.org/pdf/1206.2944.pdf) et al.).
 2. Try Ensemble methods. Combining your best models will often produce better performance than running them individually. 
 3. Once you are confident about your final model, measure its performance on the test set to estimate the generalization error. 
 
@@ -110,21 +123,21 @@ Notes:
 : Don't tweak your model after measuring the generalization error: you would just start overfifting the test set. 
 
 
-# Present Your Solution 
+## Present Your Solution 
 1. Document what you have done. 
 2. Create a nice presentation. 
-	* Make sure you highlight the big picture fuss. 
+	* Make sure you highlight the big picture first. 
 3. Explain why your solution achieves the business objective. 
 4. Don't forget to present interesting points you noticed along the way. 
 	* Describe what worked and what did not. 
 	* List your assumptions and your system's limitations. 
 5. Ensure your key findings are communicated through beautiful visualizations or easy-to-remember statements (e.g., "the median income is the number-one predictor of housing prices"). 
 
-# Launch! 
+## Launch! 
 
 1. Get your solution ready for production (plug into production data inputs, write unit tests, etc.). 
 2. Write monitoring code to check your system's live performance at regular intervals and trigger alerts when it drops. 
 	* Beware of slow degradation: models tend to "rot" as data evolves. 
 	* Measuring performance may require a human pipeline (e.g., via a crowdsourcing service). 
 	* Also monitor your inputs' quality (e.g., a malfunctioning sensor sending random values, or another team's output becoming stale). This is particularly important for online learning systems. 
-3. Retrain your models on a regular basis on fresh data (automate as much as possible). Jasper Snoek et al., "Practical Bayesian Optimization of Machine Leaming Algorithms," Proceedings of the 25th International Conference on Neural Information Processing Systems 2 (2012): 2951-2959. 
+3. Retrain your models on a regular basis on fresh data (automate as much as possible). 
